@@ -1,6 +1,7 @@
 list of things to do for mdbook:
   - mermaid plugin
   - link check plugin
+  - analytics, etc.
 
   - build the deps and pass them into mdbook when running mdbook test
 

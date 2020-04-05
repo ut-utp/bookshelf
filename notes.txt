@@ -1,0 +1,36 @@
+re: how core is tested, the peripherals section:
+
+ TRAP -> Memory Mapped Locations -> Calls functions on Peripherals -> Interacts with (real or simulated) Hardware
+   \_________/              \----------/                      \---------/
+        |                         |                                |
+        v                         v                                v
+       OS                  Baseline Simulator             Peripheral Trait Impls
+                                                            (i.e. the shims)
+
+(we test each of these pieces individually)
+
+
+## Baseline Simulator Mem-Mapped Tests:
+
+First: Let's do GPIO.
+
+Let's do the Control Register first:
+
+-------------------
+|15 ... 2| 1 .. 0 |
+-------------------
+|(Unused)|  State |
+-------------------
+
+Reads first:
+
+For each state in {Disabled, Output, Input, Interrupt}:
+  - Set the Gpio Shim to be this state
+  - Run:
+     * # Assuming the address of G0_CR is in 0x10, run this:
+     * LDI R0, x10 # at location 0x0000
+  - Assert that R0 is correct:
+     * Disabled => 0
+     * Output => 1
+     * Input => 2
+     * Interrupt => 3
