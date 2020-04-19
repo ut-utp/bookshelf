@@ -22,3 +22,5 @@ list of things to do for mdbook:
   - extra!!
     * get ACE to syntax highlight LC-3 right
     * one editable ASM thing somewhere in the book that let's people run arbitary lc-3 programs (outputs shown in the console, no inputs)
+
+  - creative commons license for this repo?
